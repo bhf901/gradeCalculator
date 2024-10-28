@@ -1,0 +1,83 @@
+body {
+    font-family: 'New York';
+    background-color: #e3f2fd;
+    color: #333;
+    margin: 0;
+    padding: 20px; /* Adds padding to the body */
+}
+
+.container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px; /* Fixed width for the container */
+    margin: 0 auto; /* Center the container horizontally */
+    animation: fadeIn 0.5s ease-in;
+    display: flex;
+    flex-direction: column; /* Ensures vertical layout */
+}
+
+h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #2196F3;
+    text-align: left; /* Aligns the title to the left */
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%; /* Full width for inputs */
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #2196F3;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    font-size: 16px; /* Increase font size for better readability */
+    font-family: 'New York';
+}
+
+input[type="text"]:focus, input[type="number"]:focus {
+    border-color: #1976D2;
+    outline: none;
+}
+
+.calculate-grade-button {
+    background-color: #2196F3;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.calculate-grade-button:hover {
+    background-color: #1976D2;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-grade-button:active {
+    transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: left; /* Aligns footer text to the left */
+}

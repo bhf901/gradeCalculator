@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+<h1>Fieldston Grade Calculator</h1>
+
+<label for="className">Class Name:</label>
+<input type="text" id="className"><br>
+
+<h2>Quizzes/Projects</h2>
+<label for="quizzesWeight">Total percentage of grade for quizzes/projects:</label>
+<input type="number" id="quizzesWeight" min="0" max="100"><br>
+<label for="numQuizzes">Number of quizzes/projects:</label>
+<input type="number" id="numQuizzes" min="0"><br>
+<div id="quizInputs"></div>
+
+<h2>Tests</h2>
+<label for="testsWeight">Total percentage of grade for tests:</label>
+<input type="number" id="testsWeight" min="0" max="100"><br>
+<label for="numTests">Number of tests:</label>
+<input type="number" id="numTests" min="0"><br>
+<div id="testInputs"></div>
+
+<h2>Participation/Classwork</h2>
+<label for="participationWeight">Total percentage of grade for participation/classwork:</label>
+<input type="number" id="participationWeight" min="0" max="100"><br>
+<label for="participationGrade">Participation grade (or n/a):</label>
+<input type="text" id="participationGrade"><br>
+
+<h2>Homework</h2>
+<label for="homeworkWeight">Total percentage of grade for homework:</label>
+<input type="number" id="homeworkWeight" min="0" max="100"><br>
+<label for="numHomework">Number of homework assignments or "LUMP":</label>
+<input type="text" id="numHomework"><br>
+<div id="homeworkInputs"></div>
+
+<button class="calculate-grade-button" onclick="calculateGrade()">Calculate Grade</button>
+<div id="result"></div>
+
+<script>
+    function addQuizInputs() {
+        const numQuizzes = document.getElementById('numQuizzes').value;
+        const quizInputs = document.getElementById('quizInputs');
+        quizInputs.innerHTML = '';
+
+        for (let i = 0; i < numQuizzes; i++) {
+            quizInputs.innerHTML += `<label for="quiz${i}">Grade for Quiz ${i + 1}:</label>
+            <input type="number" id="quiz${i}" min="0" max="100"><br>`;
+        }
+    }
+
+    function addTestInputs() {
+        const numTests = document.getElementById('numTests').value;
+        const testInputs = document.getElementById('testInputs');
+        testInputs.innerHTML = '';
+
+        for (let i = 0; i < numTests; i++) {
+            testInputs.innerHTML += `<label for="test${i}">Grade for Test ${i + 1}:</label>
+            <input type="number" id="test${i}" min="0" max="100"><br>`;
+        }
+    }
+
+    function addHomeworkInputs() {
+        const numHomework = document.getElementById('numHomework').value;
+        const homeworkInputs = document.getElementById('homeworkInputs');
+        homeworkInputs.innerHTML = '';
+
+        if (numHomework.toLowerCase() === 'lump') {
+            homeworkInputs.innerHTML += `<label for="homeworkGrade">Average Homework Grade:</label>
+            <input type="number" id="homeworkGrade" min="0" max="100"><br>`;
+        } else {
+            for (let i = 0; i < numHomework; i++) {
+                homeworkInputs.innerHTML += `<label for="homework${i}">Grade for Homework ${i + 1}:</label>
+                <input type="number" id="homework${i}" min="0" max="100"><br>`;
+            }
+        }
+    }
+
+    document.getElementById('numQuizzes').addEventListener('input', addQuizInputs);
+    document.getElementById('numTests').addEventListener('input', addTestInputs);
+    document.getElementById('numHomework').addEventListener('input', addHomeworkInputs);
+
+    function calculateGrade() {
+        const className = document.getElementById('className').value;
+        const quizzesWeight = parseFloat(document.getElementById('quizzesWeight').value);
+        const testsWeight = parseFloat(document.getElementById('testsWeight').value);
+        const participationWeight = parseFloat(document.getElementById('participationWeight').value);
+        const homeworkWeight = parseFloat(document.getElementById('homeworkWeight').value);
+
+        const totalWeight = quizzesWeight + testsWeight + participationWeight + homeworkWeight;
+
+        if (totalWeight !== 100) {
+            document.getElementById('result').innerHTML = "The weights do not total 100, please try again.";
+            return;
+        }
+
+        let totalGrade = 0;
+
+        // Quizzes
+        let quizzes = [];
+        for (let i = 0; i < document.getElementById('numQuizzes').value; i++) {
+            const grade = parseFloat(document.getElementById(`quiz${i}`).value);
+            quizzes.push(grade);
+        }
+        const averageQuizGrade = quizzes.length > 0 ? (quizzes.reduce((a, b) => a + b, 0) / quizzes.length) : 100;
+        totalGrade += averageQuizGrade * (quizzesWeight / 100);
+
+        // Tests
+        let tests = [];
+        for (let i = 0; i < document.getElementById('numTests').value; i++) {
+            const grade = parseFloat(document.getElementById(`test${i}`).value);
+            tests.push(grade);
+        }
+        const averageTestGrade = tests.length > 0 ? (tests.reduce((a, b) => a + b, 0) / tests.length) : 100;
+        totalGrade += averageTestGrade * (testsWeight / 100);
+
+        // Participation
+        const participationGrade = document.getElementById('participationGrade').value === 'n/a' ? 100 : parseFloat(document.getElementById('participationGrade').value);
+        totalGrade += participationGrade * (participationWeight / 100);
+
+        // Homework
+        let homework = [];
+        const numHomework = document.getElementById('numHomework').value;
+        if (numHomework.toLowerCase() === 'lump') {
+            const homeworkGrade = parseFloat(document.getElementById('homeworkGrade').value);
+            totalGrade += homeworkGrade * (homeworkWeight / 100);
+        } else {
+            for (let i = 0; i < numHomework; i++) {
+                const grade = parseFloat(document.getElementById(`homework${i}`).value);
+                homework.push(grade);
+            }
+            const averageHomeworkGrade = homework.length > 0 ? (homework.reduce((a, b) => a + b, 0) / homework.length) : 100;
+            totalGrade += averageHomeworkGrade * (homeworkWeight / 100);
+        }
+
+        const roundedGrade = Math.round(totalGrade);
+        let letterGrade;
+
+        if (totalGrade >= 94) {
+            letterGrade = "A";
+        } else if (totalGrade >= 90) {
+            letterGrade = "A-";
+        } else if (totalGrade >= 87.5) {
+            letterGrade = "B+";
+        } else if (totalGrade >= 82.5) {
+            letterGrade = "B";
+        } else if (totalGrade >= 80) {
+            letterGrade = "B-";
+        } else if (totalGrade >= 77.5) {
+            letterGrade = "C+";
+        } else if (totalGrade >= 72.5) {
+            letterGrade = "C";
+        } else if (totalGrade >= 70) {
+            letterGrade = "C-";
+        } else if (totalGrade >= 65) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+
+        document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}%<br>
+        Your rounded grade in ${className} class is: ${roundedGrade}%<br>
+        Your letter grade in ${className} class is: ${letterGrade}<br>
+        Thank you for using the Grade Calculator!`;
+    }
+</script>
+
+</body>
+</html>
