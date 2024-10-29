@@ -83,3 +83,8 @@ footer {
     color: #666;
     text-align: left; /* Aligns footer text to the left */
 }
+
+p {
+    font-family: 'Helvetica';
+    color: #2196F3;
+}
