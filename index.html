@@ -15,27 +15,27 @@
 
 <h2>Quizzes/Projects</h2>
 <label for="quizzesWeight">Total percentage of grade for quizzes/projects:</label>
-<input type="number" id="quizzesWeight" min="0" max="100"><p>%</p><br>
+<input type="number" id="quizzesWeight" min="0" max="100"><p></p><br>
 <label for="numQuizzes">Number of quizzes/projects:</label>
 <input type="number" id="numQuizzes" min="0"><br>
 <div id="quizInputs"></div>
 
 <h2>Tests</h2>
 <label for="testsWeight">Total percentage of grade for tests:</label>
-<input type="number" id="testsWeight" min="0" max="100"><p>%</p><br>
+<input type="number" id="testsWeight" min="0" max="100"><p></p><br>
 <label for="numTests">Number of tests:</label>
 <input type="number" id="numTests" min="0"><br>
 <div id="testInputs"></div>
 
 <h2>Participation/Classwork</h2>
 <label for="participationWeight">Total percentage of grade for participation/classwork:</label>
-<input type="number" id="participationWeight" min="0" max="100"><p>%</p><br>
+<input type="number" id="participationWeight" min="0" max="100"><p></p><br>
 <label for="participationGrade">Participation grade (or n/a):</label>
 <input type="text" id="participationGrade"><br>
 
 <h2>Homework</h2>
 <label for="homeworkWeight">Total percentage of grade for homework:</label>
-<input type="number" id="homeworkWeight" min="0" max="100"><p>%</p><br>
+<input type="number" id="homeworkWeight" min="0" max="100"><p></p><br>
 <label for="numHomework">Number of homework assignments or "LUMP":</label>
 <input type="text" id="numHomework"><br>
 <div id="homeworkInputs"></div>
@@ -164,8 +164,8 @@
             letterGrade = "F";
         }
 
-        document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}%<br>
-        Your rounded grade in ${className} class is: ${roundedGrade}%<br>
+        document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}<br>
+        Your rounded grade in ${className} class is: ${roundedGrade}<br>
         Your letter grade in ${className} class is: ${letterGrade}<br>
         Thank you for using the Grade Calculator!`;
     }
