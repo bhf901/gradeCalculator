@@ -164,9 +164,34 @@
             letterGrade = "F";
         }
 
+        let roundedLetterGrade;
+
+        if (roundedGrade >= 94) {
+            roundedLetterGrade = "A";
+        } else if (roundedGrade >= 90) {
+            roundedLetterGrade = "A-";
+        } else if (roundedGrade >= 87.5) {
+            roundedLetterGrade = "B+";
+        } else if (roundedGrade >= 82.5) {
+            roundedLetterGrade = "B";
+        } else if (roundedGrade >= 80) {
+            roundedLetterGrade = "B-";
+        } else if (roundedGrade >= 77.5) {
+            roundedLetterGrade = "C+";
+        } else if (roundedGrade >= 72.5) {
+            roundedLetterGrade = "C";
+        } else if (roundedGrade >= 70) {
+            roundedLetterGrade = "C-";
+        } else if (roundedGrade >= 65) {
+            roundedLetterGrade = "D";
+        } else {
+            roundedLetterGrade = "F";
+        }
+
         document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}<br>
         Your rounded grade in ${className} class is: ${roundedGrade}<br>
         Your letter grade in ${className} class is: ${letterGrade}<br>
+        Your rounded letter grade in ${className} is: ${roundedLetterGrade}<br>
         Thank you for using the Grade Calculator!`;
     }
 </script>
