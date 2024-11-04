@@ -26,7 +26,7 @@ h1 {
 }
 
 input[type="text"], input[type="number"] {
-    width: 100%; /* Full width for inputs */
+    width: 50%; /* Full width for inputs */
     padding: 12px;
     margin: 10px 0;
     border: 2px solid #2196F3;
@@ -35,13 +35,12 @@ input[type="text"], input[type="number"] {
     box-sizing: border-box; /* Ensures padding is included in width */
     font-size: 16px; /* Increase font size for better readability */
     font-family: 'Helvetica';
-    max-width: 500 px;
+    max-width: 50 px;
 }
 
 input[type="text"]:focus, input[type="number"]:focus {
     border-color: #1976D2;
     outline: none;
-    max-width: 50px;
 }
 
 .calculate-grade-button {
