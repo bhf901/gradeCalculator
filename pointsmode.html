@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Points Mode | Fieldston Grade Calculator</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h1>Fieldston Grade Calculator</h1>
+<label for="className">Class Name:</label>
+<input type="text" id="className"><br>
+
+<h2>Graded Assignments</h2>
+<label for="amtAssignments">Number of Graded Assignments Given:</label>
+<input type="number" id="amtAssignments" min="0"><br>
+<div id = "gradeInputs"></div>
+
+<button class="calculate-grade-button" onclick="calculateGrade()">Calculate Grade</button>
+<div id="result"></div>
+
+<script>
+    let totalWeight = 0;
+    let totalPointsReceived = 0;
+
+    function addAssignmentInputs() {
+        const numAssignments = document.getElementById("amtAssignments").value;
+        const gradeInputs = document.getElementById("gradeInputs");
+        gradeInputs.innerHTML = '';
+
+        for (let i = 0; i < numAssignments; i++) {
+            gradeInputs.innerHTML += `<label for="grade${i}">Points Received on Assignment ${i + 1}:</label><br>`;
+            gradeInputs.innerHTML += `<input type="number" id="grade${i}" min="0"><br>`;
+            gradeInputs.innerHTML += `<label for="points${i}">Total Points for Assignment ${i + 1}:</label><br>`;
+            gradeInputs.innerHTML += `<input type="number" id="points${i}" min="0"><br>`;
+        }
+    }
+
+    document.getElementById('amtAssignments').addEventListener('input', addAssignmentInputs);
+
+    function calculateGrade() {
+        const className = document.getElementById('className').value;
+        let totalGrade = 0;
+        totalWeight = 0;
+        totalPointsReceived = 0;
+
+        const numAssignments = document.getElementById('amtAssignments').value;
+
+        for (let i = 0; i < numAssignments; i++) {
+            let gradeValue = parseFloat(document.getElementById(`grade${i}`).value) || 0;
+            let pointsValue = parseFloat(document.getElementById(`points${i}`).value) || 0;
+
+            totalPointsReceived += gradeValue;
+            totalWeight += pointsValue;
+        }
+
+        if (totalWeight > 0) {
+            totalGrade = (totalPointsReceived / totalWeight) * 100;
+        } else {
+            totalGrade = 0;  // Avoid division by zero
+        }
+
+        const roundedGrade = Math.round(totalGrade);
+        let letterGrade;
+
+        if (totalGrade >= 94) {
+            letterGrade = "A";
+        } else if (totalGrade >= 90) {
+            letterGrade = "A-";
+        } else if (totalGrade >= 87.5) {
+            letterGrade = "B+";
+        } else if (totalGrade >= 82.5) {
+            letterGrade = "B";
+        } else if (totalGrade >= 80) {
+            letterGrade = "B-";
+        } else if (totalGrade >= 77.5) {
+            letterGrade = "C+";
+        } else if (totalGrade >= 72.5) {
+            letterGrade = "C";
+        } else if (totalGrade >= 70) {
+            letterGrade = "C-";
+        } else if (totalGrade >= 65) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+
+        let roundedLetterGrade;
+
+        if (roundedGrade >= 94) {
+            roundedLetterGrade = "A";
+        } else if (roundedGrade >= 90) {
+            roundedLetterGrade = "A-";
+        } else if (roundedGrade >= 87.5) {
+            roundedLetterGrade = "B+";
+        } else if (roundedGrade >= 82.5) {
+            roundedLetterGrade = "B";
+        } else if (roundedGrade >= 80) {
+            roundedLetterGrade = "B-";
+        } else if (roundedGrade >= 77.5) {
+            roundedLetterGrade = "C+";
+        } else if (roundedGrade >= 72.5) {
+            roundedLetterGrade = "C";
+        } else if (roundedGrade >= 70) {
+            roundedLetterGrade = "C-";
+        } else if (roundedGrade >= 65) {
+            roundedLetterGrade = "D";
+        } else {
+            roundedLetterGrade = "F";
+        }
+
+        document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}%<br>
+Your rounded grade in ${className} class is: ${roundedGrade}%<br>Your letter grade in ${className} class is: ${letterGrade}<br>
+Your rounded letter grade in ${className} class is: ${roundedLetterGrade}<br>Thank you for using the Grade Calculator!`;
+    }
+</script>
+</body>
