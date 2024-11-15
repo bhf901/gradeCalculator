@@ -103,7 +103,8 @@ p {
     cursor: pointer;
     border-radius: 12px;
     transition: background-color 0.3s, transform 0.3s;
-    font-family: 'Helvetica'
+    font-family: 'Helvetica';
+    text-decoration: none;
 }
 
 .topnav:active {
