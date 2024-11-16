@@ -120,3 +120,12 @@ p {
 a {
     text-decoration: none;
 }
+
+footer {
+    font-family: 'Helvetica';
+    color: #2196F3;
+}
+
+h3 {
+    font-family: 'Helvetica';
+}
