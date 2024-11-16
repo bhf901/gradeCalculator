@@ -105,7 +105,6 @@ p {
     transition: background-color 0.3s, transform 0.3s;
     font-family: 'Helvetica';
     text-decoration: none;
-    width: 175px;
 }
 
 .topnav:active {
