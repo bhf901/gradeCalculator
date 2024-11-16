@@ -1,6 +1,5 @@
 body {
     font-family: 'Helvetica';
-    background-color: #e3f2fd;
     color: #333;
     margin: 0;
     padding: 20px; /* Adds padding to the body */
@@ -141,6 +140,10 @@ h4 {
     100% {
         opacity: 1;
     }
+}
+
+html {
+    background-color: #e3f2fd;
 }
 
 .fade-in {
