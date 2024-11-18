@@ -24,6 +24,7 @@
 
 <button class="calculate-grade-button" onclick="calculateGrade()">Calculate Grade</button>
 <div id="result"></div>
+<div id="line"></div>
 <footer>There is an error on this page in which the grade is calculated as 0% when there is no valid divisor. I am aware of this issue and it will be fixed soon.</footer>
 
 <script>
@@ -36,10 +37,12 @@
         gradeInputs.innerHTML = '';
 
         for (let i = 0; i < numAssignments; i++) {
+            line.innerHTML += `<hr>`
             gradeInputs.innerHTML += `<label for="grade${i}">Points Received on Assignment ${i + 1}:</label><br>`;
             gradeInputs.innerHTML += `<input type="number" id="grade${i}" min="0"><br>`;
             gradeInputs.innerHTML += `<label for="points${i}">Total Points for Assignment ${i + 1}:</label><br>`;
             gradeInputs.innerHTML += `<input type="number" id="points${i}" min="0"><br>`;
+            
         }
     }
 
