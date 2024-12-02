@@ -24,7 +24,6 @@
 
 <button class="calculate-grade-button" onclick="calculateGrade()">Calculate Grade</button>
 <div id="result"></div>
-<footer>There is an error on this page in which the grade is calculated as 0% when there is no valid divisor. I am aware of this issue and it will be fixed soon.</footer>
 
 <script>
     let totalWeight = 0;
@@ -41,7 +40,7 @@
             gradeInputs.innerHTML += `<input type="number" id="grade${i}" min="0"><br>`;
             gradeInputs.innerHTML += `<label for="points${i}">Total Points for Assignment ${i + 1}:</label><br>`;
             gradeInputs.innerHTML += `<input type="number" id="points${i}" min="0"><br>`;
-            
+
         }
     }
 
@@ -65,8 +64,10 @@
 
         if (totalWeight > 0) {
             totalGrade = (totalPointsReceived / totalWeight) * 100;
+        } else if (totalGrade = 0) {
+            totalGrade = 0;
         } else {
-            totalGrade = 0;  // Avoid division by zero
+            totalGrade = undefined;
         }
 
         const roundedGrade = Math.round(totalGrade);
@@ -118,9 +119,13 @@
             roundedLetterGrade = "F";
         }
 
-        document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}%<br>
-Your rounded grade in ${className} class is: ${roundedGrade}%<br>Your letter grade in ${className} class is: ${letterGrade}<br>
-Your rounded letter grade in ${className} class is: ${roundedLetterGrade}<br>Thank you for using the Grade Calculator!`;
+        if (isNaN(totalGrade)) {
+            document.getElementById('result').innerHTML = `Your grade was unable to be calculated.`;
+        } else {
+            document.getElementById('result').innerHTML = `Your grade in ${className} class is: ${totalGrade.toFixed(2)}%<br>
+    Your rounded grade in ${className} class is: ${roundedGrade}%<br>Your letter grade in ${className} class is: ${letterGrade}<br>
+    Your rounded letter grade in ${className} class is: ${roundedLetterGrade}<br>Thank you for using the Grade Calculator!`;
+        }
     }
 </script>
 </body>
