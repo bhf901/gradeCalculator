@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="calculatorfavicon.png">
-        <link rel="stylesheet" href="main.css">
-        <title>Fieldston Calculator</title>
-    </head>
-    <body>
-        <h1>Fieldston Calculator</h1>
-        <h2>Select a product to continue.</h2>
-        <a class="topnav" href="calculatorhomepage.html">Fieldston Grade Calculator</a><br><br><br>
-        <a class="topnav" href="aihomepage.html">Fieldston Calculator AI</a><br><br><br>
-        <a class="topnav" href="basiccalculator.html">Fieldston Calculator Basic</a><br><br><br>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="calculatorfavicon.png">
+    <link rel="stylesheet" href="main.css">
+    <title>Fieldston Calculator</title>
+</head>
+<body>
+<h1>Fieldston Calculator</h1>
+<h2>Select a product to continue.</h2>
+<select class="pageselection" id="navigator">
+    <option value="face">Select a product...</option>
+    <option value="gradecalculator">Fieldston Grade Calculator</option>
+    <option value="calculatorai">Fieldston Calculator AI</option>
+    <option value="calculatorbasic">Fieldston Calculator Basic</option>
+</select>
+<button class="enterbutton" onclick="goToNewPage()">Go</button>
+<script>
+    function goToNewPage() {
+        let selection = document.getElementById('navigator').value;
+        if (selection === 'gradecalculator') {
+            window.location.href= "calculatorhomepage.html";
+        } else if (selection === 'calculatorai') {
+            window.location.href = "aihomepage.html";
+        } else if (selection === 'calculatorbasic') {
+            window.location.href = "basiccalculator.html";
+        } else {
+            // stays on page
+        }
+        console.log('success');
+    }
+</script>
+</body>
 </html>
