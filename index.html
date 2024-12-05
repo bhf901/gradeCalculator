@@ -16,6 +16,7 @@
     <option value="gradecalculator">Fieldston Grade Calculator</option>
     <option value="calculatorai">Fieldston Calculator AI</option>
     <option value="calculatorbasic">Fieldston Calculator Basic</option>
+    <option value="taskly">Taskly (Beta)</option>
 </select>
 <button class="enterbutton" onclick="goToNewPage()">Go</button>
 <script>
@@ -27,8 +28,10 @@
             window.location.href = "aihomepage.html";
         } else if (selection === 'calculatorbasic') {
             window.location.href = "basiccalculator.html";
+        } else if (selection === 'taskly') {
+            window.location.href = "tasklybeta.html"
         } else {
-            // stays on page
+            
         }
     }
 
