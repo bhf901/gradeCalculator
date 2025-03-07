@@ -14,9 +14,7 @@
 <select class="pageselection" id="navigator">
     <option value="face">Select a product...</option>
     <option value="gradecalculator">Fieldston Grade Calculator</option>
-    <option value="calculatorai">Fieldston Calculator AI</option>
     <option value="calculatorbasic">Fieldston Calculator Basic</option>
-    <option value="corporate">Fieldston Calculator Corporate</option>
     <option value="taskly">Taskly (Beta)</option>
     <option value="personalwebsite">Ben Fink's Portfolio</option>
 </select>
@@ -26,12 +24,8 @@
         let selection = document.getElementById('navigator').value;
         if (selection === 'gradecalculator') {
             window.location.href= "calculatorhomepage.html";
-        } else if (selection === 'calculatorai') {
-            window.location.href = "aihomepage.html";
         } else if (selection === 'calculatorbasic') {
             window.location.href = "basiccalculator.html";
-        } else if (selection === 'corporate') {
-            window.location.href = "https://corporate.fieldstoncalculator.com/";
         } else if (selection === 'taskly') {
             window.location.href = "https://taskly.fieldstoncalculator.com/";
         } else if (selection === 'personalwebsite') {
